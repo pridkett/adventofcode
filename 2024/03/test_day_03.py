@@ -20,6 +20,11 @@ class TestSolution(unittest.TestCase):
         result = self.solution.parse_line(line)
         self.assertEqual(result, 0)
 
+    def test_parse_line_aoc_input(self):
+        line = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))"
+        result = self.solution.parse_line(line)
+        self.assertEqual(result, 161)
+
     def test_parse_line_advanced_with_do(self):
         line = "do() mul(2,3)"
         result = self.solution.parse_line_advanced(line)
@@ -39,6 +44,11 @@ class TestSolution(unittest.TestCase):
         line = "mul(3,3)"
         result = self.solution.parse_line_advanced(line)
         self.assertEqual(result, 9)
+
+    def test_parse_line_advanced_aoc_input(self):
+        line = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+        result = self.solution.parse_line_advanced(line)
+        self.assertEqual(result, 48)
 
 if __name__ == '__main__':
     unittest.main()
