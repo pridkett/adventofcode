@@ -36,9 +36,6 @@ class Solution:
     def get_map(self) -> str:
         robot_map = self._robots_to_ndarray()
         map = "\n".join(["".join([str(x) for x in row]) for row in robot_map.T]).replace("0", ".")
-        # print("*"*80)
-        # print(map)
-        # print("*"*80)
         return map
 
     def get_safety_factor(self) -> int:
@@ -49,10 +46,6 @@ class Solution:
                  ((x_splits[1]+1, 0), (x_splits[2], y_splits[1])),
                  ((0, y_splits[1]+1), (x_splits[1], y_splits[2])),
                  ((x_splits[1]+1, y_splits[1]+1), (x_splits[2], y_splits[2])))
-        # for q in quads:
-        #     print(f"Quad: {q}")
-        #     print(robot_map[q[0][0]:q[1][0], q[0][1]:q[1][1]])
-        #     print(int(np.sum(robot_map[q[0][0]:q[1][0], q[0][1]:q[1][1]])))
         return math.prod([int(np.sum(robot_map[quad[0][0]:quad[1][0], quad[0][1]:quad[1][1]])) for quad in quads])
 
     def tick(self, count:int):
@@ -82,41 +75,8 @@ def main(fn: str):
                 print(s.get_map())
             s.tick(1)
             ctr = ctr + 1
-        # s.tick(100)
-        # print(s.get_map())
-        # print(s.get_safety_factor())
-
-        # s = Solution()
-        # data = f.read()
-        # s.set_dimensions((101, 103))
-        # s.load_robots(data)
-        # while True:
-        #     print("*"*80)
-        #     print(s.get_map())
-        #     s.tick(1)
-        #     print(s.get_safety_factor())
-        # print(s.get_map())
-        # s.tick(100)
-        # print(s.get_map())
-        # print(s.get_safety_factor())
-
-        # s = Solution()
-        # data = f.read()
-        # s.set_dimensions((101, 103))
-        # s.load_robots(data)
-        # i = 0
-        # while True:
-        #     print("*"*80)
-        #     print(f"i: {i}")
-        #     print(s.get_map())
-        #     s.tick(1)
-        #     print(s.get_safety_factor())
-        #     i += 1
 
 if __name__ == "__main__":
     main("input.txt")
 
-# guesses:
-# 25437 - too low
-# 25629 - was accidentally subtracting the -1 for unsolvable problems before
 
