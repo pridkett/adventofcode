@@ -74,7 +74,7 @@ class Solution:
     def print_program_status(self):
         pass
 
-    def run_with_output(self)-> str:
+    def run_with_output(self)-> List[int]:
         output:ProgramOutput = []
         with Live(self.generate_table(output)) as live:
     
@@ -90,7 +90,7 @@ class Solution:
                 tty.setcbreak(sys.stdin)
                 sys.stdin.read(1)
 
-        return ",".join([str(x) for x in output])
+        return output
     
     def run(self)-> ProgramOutput:
         output:ProgramOutput = []
@@ -174,8 +174,9 @@ def main(fn: str):
         s = Solution()
         data = f.read()
         s.load(data)
-        # print(s.run_with_output())
-        print(",".join([str(x) for x in s.run()]))
+        # s.registers['A'] = 190384113204239
+        print(",".join([str(x) for x in s.run_with_output()]))
+        # print(",".join([str(x) for x in s.run()]))
         print(s.reverse_calc(s.program))
 
 if __name__ == "__main__":
